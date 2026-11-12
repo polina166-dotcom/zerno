@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кавʼярня «Зерно» — демо-сайт для GTM</title>
+
+<!--
+  ============================================================
+  GOOGLE TAG MANAGER — ЧАСТИНА 1 (head)
+  Заміни GTM-TCCGDP4X на ID свого контейнера (тут і нижче в <body>)
+  ============================================================
+-->
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TCCGDP4X');</script>
+<!-- End Google Tag Manager -->
+
+<style>
+  :root {
+    --bg: #EFE6D8;          /* бежевий */
+    --ink: #2E2620;         /* темна кава */
+    --muted: #75685A;
+    --accent: #8B5E34;      /* карамельно-коричневий */
+    --accent-dark: #6F4A28;
+    --card: #FAF6EF;
+    --line: #E0D3BF;
+    --panel: #3A2E25;
+    --panel-field: #4A3C31;
+    --panel-text: #E3D5C2;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  header { padding: 22px 0; border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; justify-content: space-between; align-items: center; }
+  .logo { font-weight: 800; font-size: 22px; letter-spacing: -0.5px; }
+  .logo span { color: var(--accent); }
+  nav a { color: var(--ink); text-decoration: none; margin-left: 24px; font-size: 15px; }
+  nav a:hover { color: var(--accent); }
+
+  /* Hero */
+  .hero { padding: 96px 24px 88px; }
+  .hero .tag {
+    display: inline-block; background: var(--card); color: var(--accent);
+    font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 99px; margin-bottom: 20px;
+  }
+  .hero h1 { font-size: clamp(38px, 6vw, 64px); line-height: 1.05; letter-spacing: -1.5px; max-width: 720px; }
+  .hero p { font-size: 19px; color: var(--muted); max-width: 540px; margin: 22px 0 34px; }
+
+  .btn {
+    display: inline-block; border: none; cursor: pointer;
+    background: var(--accent); color: #fff; font-size: 16px; font-weight: 600;
+    padding: 15px 28px; border-radius: 12px; text-decoration: none;
+    transition: background .15s, transform .15s;
+    font-family: inherit;
+  }
+  .btn:hover { background: var(--accent-dark); transform: translateY(-1px); }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); margin-left: 10px; }
+  .btn.ghost:hover { background: var(--ink); color: #fff; }
+
+  /* Sections */
+  section { padding: 72px 0; }
+  section h2 { font-size: 36px; letter-spacing: -0.8px; margin-bottom: 10px; }
+  section .lead { color: var(--muted); margin-bottom: 36px; }
+
+  /* Menu */
+  .menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .item {
+    background: var(--card); border: 1px solid var(--line); border-radius: 18px;
+    padding: 26px; display: flex; flex-direction: column;
+  }
+  .item .emoji { font-size: 40px; margin-bottom: 14px; }
+  .item h3 { font-size: 20px; margin-bottom: 6px; }
+  .item p { color: var(--muted); font-size: 15px; flex: 1; margin-bottom: 18px; }
+  .item .row { display: flex; justify-content: space-between; align-items: center; }
+  .item .price { font-weight: 700; font-size: 20px; }
+  .item .btn { padding: 11px 20px; font-size: 15px; }
+
+  /* Booking */
+  .booking { background: var(--panel); color: #fff; border-radius: 24px; padding: 56px; }
+  .booking h2 { color: #fff; }
+  .booking .lead { color: var(--panel-text); }
+  form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 640px; }
+  form .full { grid-column: 1 / -1; }
+  label { display: block; font-size: 14px; color: var(--panel-text); margin-bottom: 6px; }
+  input, select {
+    width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid #5C4B3D;
+    background: var(--panel-field); color: #fff; font-size: 16px; font-family: inherit;
+  }
+  input::placeholder { color: #A6978A; }
+  input:focus, select:focus { outline: 2px solid var(--accent); border-color: transparent; }
+  .thanks {
+    display: none; max-width: 640px; background: var(--panel-field); border-radius: 14px; padding: 28px;
+  }
+  .thanks h3 { font-size: 22px; margin-bottom: 6px; }
+  .thanks p { color: var(--panel-text); }
+
+  /* Footer */
+  footer { padding: 40px 0 56px; color: var(--muted); font-size: 15px; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  footer a { color: var(--accent); }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(120px);
+    background: var(--ink); color: #fff; padding: 14px 22px; border-radius: 12px;
+    font-size: 15px; transition: transform .25s, opacity .25s; z-index: 10; opacity: 0;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+  @media (max-width: 640px) {
+    nav { display: none; }
+    .btn.ghost { margin: 12px 0 0; }
+    .booking { padding: 32px 22px; }
+    form { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!--
+  ============================================================
+  GOOGLE TAG MANAGER — ЧАСТИНА 2 (одразу після <body>)
+  ============================================================
+-->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCCGDP4X"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header>
+  <div class="wrap">
+    <div class="logo">Зерно<span>.</span></div>
+    <nav>
+      <a href="#menu">Меню</a>
+      <a href="#booking">Бронювання</a>
+      <a href="#contacts">Контакти</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <span class="tag">Відкрились на Подолі</span>
+    <h1>Кава, яку смажимо самі щоп'ятниці</h1>
+    <p>Спешелті-зерно з Ефіопії та Колумбії, свіжа випічка зранку і столик біля вікна, якщо забронюєш заздалегідь.</p>
+    <a href="#booking" class="btn" id="cta-hero">Забронювати столик</a>
+    <a href="#menu" class="btn ghost" id="cta-menu">Подивитись меню</a>
+  </div>
+
+  <section id="menu">
+    <div class="wrap">
+      <h2>Меню</h2>
+      <p class="lead">Замовляй онлайн і забирай без черги.</p>
+      <div class="menu">
+        <div class="item">
+          <div class="emoji">☕</div>
+          <h3>Флет вайт</h3>
+          <p>Подвійний ристрето і ніжне молоко. Наш бестселер.</p>
+          <div class="row">
+            <span class="price">75 ₴</span>
+            <button class="btn btn-order" data-product="Флет вайт" data-price="75">Замовити</button>
+          </div>
+        </div>
+        <div class="item">
+          <div class="emoji">🧊</div>
+          <h3>Колд брю</h3>
+          <p>Настоюємо 18 годин. Без гіркоти, з легкою кислинкою.</p>
+          <div class="row">
+            <span class="price">85 ₴</span>
+            <button class="btn btn-order" data-product="Колд брю" data-price="85">Замовити</button>
+          </div>
+        </div>
+        <div class="item">
+          <div class="emoji">🥐</div>
+          <h3>Круасан з мигдалем</h3>
+          <p>Печемо о 7:00, тож після обіду може не залишитись.</p>
+          <div class="row">
+            <span class="price">65 ₴</span>
+            <button class="btn btn-order" data-product="Круасан з мигдалем" data-price="65">Замовити</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="booking">
+    <div class="wrap">
+      <div class="booking">
+        <h2>Забронювати столик</h2>
+        <p class="lead">Залиш контакти, і ми передзвонимо за 10 хвилин.</p>
+
+        <form id="booking-form" action="#" method="post">
+          <div>
+            <label for="name">Імʼя</label>
+            <input id="name" name="name" type="text" placeholder="Олена" required>
+          </div>
+          <div>
+            <label for="phone">Телефон</label>
+            <input id="phone" name="phone" type="tel" placeholder="+380 67 123 45 67" required>
+          </div>
+          <div>
+            <label for="guests">Скільки гостей</label>
+            <select id="guests" name="guests">
+              <option>1</option>
+              <option selected>2</option>
+              <option>3–4</option>
+              <option>5+</option>
+            </select>
+          </div>
+          <div>
+            <label for="time">Коли</label>
+            <select id="time" name="time">
+              <option>Сьогодні</option>
+              <option>Завтра</option>
+              <option>На вихідних</option>
+            </select>
+          </div>
+          <div class="full">
+            <button type="submit" class="btn" id="booking-submit">Надіслати заявку</button>
+          </div>
+        </form>
+
+        <div class="thanks" id="booking-thanks">
+          <h3>Дякуємо, заявку отримали!</h3>
+          <p>Ми передзвонимо найближчим часом, щоб підтвердити бронь.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contacts">
+  <div class="wrap">
+    <div>Київ, вул. Сагайдачного, 1 · щодня 8:00–21:00</div>
+    <div>
+      <a href="tel:+380671234567" id="link-phone">+380 67 123 45 67</a> ·
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener" id="link-instagram">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function showToast(text) {
+    var t = document.getElementById('toast');
+    t.textContent = text;
+    t.classList.add('show');
+    clearTimeout(t._timer);
+    t._timer = setTimeout(function () { t.classList.remove('show'); }, 2200);
+  }
+
+  // Кнопки «Замовити»: показуємо підтвердження + кладемо подію в dataLayer
+  // (подію можна використати як тригер «Спеціальна подія» = add_to_cart)
+  document.querySelectorAll('.btn-order').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      showToast('Додано в замовлення: ' + btn.dataset.product);
+      window.dataLayer.push({
+        event: 'add_to_cart',
+        item_name: btn.dataset.product,
+        value: Number(btn.dataset.price),
+        currency: 'UAH'
+      });
+    });
+  });
+
+  // Форма бронювання: замість перезавантаження показуємо «Дякуємо»
+  // + подія generate_lead у dataLayer (надійніший тригер, ніж «Надсилання форми»)
+  document.getElementById('booking-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    window.dataLayer.push({
+      event: 'generate_lead',
+      form_id: 'booking-form',
+      guests: document.getElementById('guests').value
+    });
+    this.style.display = 'none';
+    document.getElementById('booking-thanks').style.display = 'block';
+  });
+</script>
+</body>
+</html>
